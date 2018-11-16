@@ -15,24 +15,12 @@ fi
 if [[ ! -d "/var/www/vendor" ]];
 then
 cd /var/www
-
-#Quick fick for this issue file_put_contents(/var/www/app/storage/meta/services.json): failed to open stream: Permission denied
-echo "Running composer update"
 composer update
-echo "Running php artisan cache:clear "
-php artisan cache:clear 
-echo "Running chmod -R 777 storage/ " 
-
-chmod -R 777 /var/www/app/storage/
-echo "Running composer dump-autoload -o "
 composer dump-autoload -o
-echo "Running php artisan key:generate"
-php artisan key:generate
-echo "Running php artisan optimize"
-php artisan optimize
-
 fi
 
+cd /var/www/blog
+chmod -R 777 storage
 # ----------------------------------------------------------------------
 # Start supervisord
 # ----------------------------------------------------------------------
