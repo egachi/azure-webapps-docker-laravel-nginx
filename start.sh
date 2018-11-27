@@ -19,7 +19,7 @@ composer update
 composer dump-autoload -o
 fi
 
-cd /var/www/blog
+cd /var/www/
 chmod -R 777 storage
 # ----------------------------------------------------------------------
 # Start supervisord
