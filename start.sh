@@ -23,6 +23,10 @@ fi
 cd /var/www/
 chmod -R 777 storage
 
+# Get environment variables to show up in SSH session
+eval $(printenv | sed -n "s/^\([^=]\+\)=\(.*\)$/export \1=\2/p" | sed 's/"/\\\"/g' | sed '/=/s//="/' | sed 's/$/"/' >> /etc/profile)
+
+
 # ----------------------------------------------------------------------
 # Start SSH
 # ----------------------------------------------------------------------
