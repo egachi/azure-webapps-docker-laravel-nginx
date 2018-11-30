@@ -27,11 +27,5 @@ chmod -R 777 storage
 # Start SSH
 # ----------------------------------------------------------------------
 echo "Starting SSH..."
-
-# Ensure this happens after /sbin/init
-( sleep 5 ; /etc/init.d/sshd restart ) &
-# Needs to start as PID 1 for openrc on alpine
-
-exec -c /sbin/init &
-
-( sleep 5 ; echo "Starting supervisord..."; /usr/bin/supervisord -c /etc/supervisord.conf -n)
+exec /usr/sbin/sshd &
+(echo "Starting supervisord..."; /usr/bin/supervisord -c /etc/supervisord.conf -n)
